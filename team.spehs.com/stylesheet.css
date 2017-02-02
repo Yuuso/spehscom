@@ -1,0 +1,60 @@
+
+body
+{
+    background-color: #2f2e2e;
+    text-align: center;
+    font-family:courier new,courier,monospace;
+}
+
+a:link
+{
+    color: #185952;
+}
+a:visited
+{
+    color: #185952;
+}
+a:hover
+{
+    color: #26c97a;
+}
+a:active
+{
+    color: #26c97a;
+}
+a
+{
+    text-decoration: none;
+}
+
+::selection
+{
+    background: #bababa;
+}
+::-moz-selection
+{/* for firefox */
+    background: #bababa;
+}
+
+.profilecard
+{
+    height: 150px;
+    width: 600px;
+    border-radius: 15px;
+    background-color: #222222;
+    margin: auto;
+    font-size: 20px;
+    color:#CCD9D4;
+    text-align: left;
+}
+.profilecard > h1
+{
+    padding-top: 50px;
+    padding-left: 200px;
+}
+.profileimage
+{
+    float: left;
+    padding-left: 30px; 
+    padding-top: 25px;
+}

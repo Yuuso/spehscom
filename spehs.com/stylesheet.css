@@ -58,16 +58,38 @@ a
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+
+    cursor: pointer;
 }
-#navigationbar > a:first-child > .navigation
+.navigationbox
+{
+    background-color: #ffffff;
+}
+#first-nav
 {
     border-top-left-radius: 15px;
     margin-left: 0px;
 }
-#navigationbar > a:last-child > .navigation
+#last-nav
 {
     border-top-right-radius: 15px;
     margin-right: 0px;
+}
+
+.subnavigation
+{
+    height: 0px;
+    background-color: #ffffff;
+    overflow: hidden;
+    position: absolute;
+    z-index: 1;
+}
+.subnavigationbox
+{
+    background-color: #222222;
+    text-align: center;
+    margin: auto;
+    display: table;
 }
 
 #warning
