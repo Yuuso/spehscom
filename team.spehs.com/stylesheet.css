@@ -2,6 +2,7 @@
 body
 {
     background-color: #2f2e2e;
+    color:#CCD9D4;
     text-align: center;
     font-family:courier new,courier,monospace;
 }
@@ -38,23 +39,80 @@ a
 
 .profilecard
 {
+    display: inline-block;
     height: 150px;
     width: 600px;
     border-radius: 15px;
     background-color: #222222;
     margin: auto;
     font-size: 20px;
-    color:#CCD9D4;
     text-align: left;
 }
 .profilecard > h1
 {
-    padding-top: 50px;
+    padding-top: 10px;
     padding-left: 200px;
+}
+.profilecard > h2
+{
+    margin-top: -30px;
+    padding-left: 200px;
+}
+h2
+{
+    color:#777777;
 }
 .profileimage
 {
     float: left;
-    padding-left: 30px; 
+    padding-left: 50px;
     padding-top: 25px;
+}
+
+#header
+{
+    width: 900px;
+    height: 150px;
+    margin: auto;
+    margin-top: 150px;
+    background-color: #222222;
+    border-radius: 15px;
+}
+
+.contentbox
+{
+    width: 900px;
+    margin: auto;
+    margin-top: 40px;
+    background-color: #222222;
+    border-radius: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: left;
+}
+.contentbox > h3
+{
+    padding-left: 40px;
+    color: #ffffff;
+    font-size: 30px;
+}
+.contentbox > h4
+{
+    padding-left: 40px;
+    color: #ffffff;
+}
+ul
+{
+    margin-left: 20px;
+}
+li
+{
+    margin-bottom: 10px;
+}
+p
+{
+    padding-left: 40px;
+    margin-top: -25px;
+    color: #aaffaa;
+    font-size: 14px;
 }
