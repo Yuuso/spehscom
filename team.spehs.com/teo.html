@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta name="description" content="Spehs.com | Teo" />
+		<meta name="author" content="Juuso Turunen" />
+		
+		<link rel="icon" type="image/png" href="http://spehs.com/favicon.ico">
+
+		<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+
+		<title>Spehs Team: Teo</title>
+	</head>
+
+	<body>
+		<div style="height: 100px; width: 900px; margin: auto;">
+			<a href="http://spehs.com">
+				<object data="http://i.imgur.com/in1cesk.png" type="image/png" width="500">
+					<img src="default_img_y.png" width="900" />
+				</object>
+			</a>
+		</div>
+
+		<div id="header">
+			<div class="profileimage">
+				<object data="http://i.imgur.com/NZRLivX.jpg" type="image/png" width="100">
+					<img src="default_img_y.png" width="100" />
+				</object>
+			</div>
+			<a href="https://fi.linkedin.com/in/teo-hiltunen-452170a6"><h3 style="padding-top: 15px; padding-right: 50px; float: right"> Linkedin <h3></a>
+			<a href="http://github.com/Harcton"><h3 style="margin-top: -10px; padding-right: 50px; float: right; clear: right;"> Github </h3></a>
+			<h1 style="padding-top: 30px; padding-left: 200px; font-size: 42px; text-align: left;">TEO HILTUNEN</h1>
+			<h2 style="margin-top: -20px;padding-left: 200px; text-align: left;">HARCTON</h2>
+		</div>
+
+		<div class="contentbox">
+			<h3>SpehsEngine Responsibilities</h3>
+
+			<h4>GUI System</h4>
+			<ul>
+				<li>A built from scratch GUI system for creating simple GUI interface, reserving an option for wide application level customization.</li>
+				<li>Includes many premade classes for the most commonly used GUI element types.</li>
+				<li>GUI element types divide into container and non-container archetype. For example, a list of elements is a GUI element itself. Non-containers usually fulfil certain functionality.
+					For example, GUIEditor classes implement functionality for modifying variables.</li>
+				<li>GUIWindow class can be used together with GUIWindowManager to easily create a system where windows can co-exist with each other, passing input only to relevant focussed window.</li>
+			</ul>
+			
+			<h4>Console</h4>
+			<ul>
+				<li>Offers console variables functionality: user can modify a &lt;bool, int, float&gt; variable with a given console command.</li>
+				<li>Offers console command functionality: user can call a function and pass parameters.</li>
+			</ul>
+
+			<h4>Serialization, Filestream, Compression, String Operations</h4>
+			<ul>
+				<li>Serialization offers a base class for a user written serializable class. 
+					Serializable class can then be used in serializable vector/directory as an element.</li>
+				<li>Filestream functionality includes managing files (using Boost to handle this portably). Example functions: fileExists, createDirectory.</li>
+				<li>Basic zlib compression</li>
+				<li>String operations examples: arrangeIntoRows, toHexString</li>
+			</ul>
+
+			<h4>Joystick Management, Keyboard Recorder</h4>
+			<ul>
+				<li>Joystick management happens through SDL2. The engine offers following functionality: accessing joystick state, getting information about the device 
+					and most importantly a system that allows joystick to temporarily disconnect while retaining existence within the input system. 
+					Basically a joystick never disconnects, they just go offline.
+					When a new joystick is connected, the system makes an analyzed guess whether the joystick can be associated to a previously disconnected joystick, returning that joystick back to action.</li>
+				<li>Keyboard recorder works through the input manager and offers an extra layer between the input manager and an entity that wants to process the keystrokes.
+					The recorder differentiates input into two categories: character and command. Example use: string editor uses the keyboard recorder to process user input 
+					(A character key press should be added to the string, while an enter key press should end typing).</li>
+			</ul>
+
+			<h4>Deprecated Text Rendering and Font Management</h4>
+			<ul>
+				<li>Text rendering has went through some changes with the batch rendering system, but the initial version was done by me.
+					Most of the metrics calculation and the font management has remained roughly the same.</li>
+			</ul>
+		</div>
+
+		<div class="contentbox">
+			<h3>Spehs Application Level Responsibilities</h3>
+
+			<h4>Serialization</h4>
+			<p>Writing to file, writing to network streams</p>
+			<ul>
+				<li>All ships (structures) must be able to write all essential data into files. This format is called the build data. Build data is used by every system
+					handling structures: client builds visual representation of structures, server builds world entities that have the actual functionality, and the editor
+					uses a little bit both in order to build the editor interface for the player to interact with.</li>
+				<li>Once the server and the client are aware of what the structure is like (both have acquired the build data) the client can start to receive
+					update data for the structure. Update data is usually somewhere from 1% to 10% of the build data size, so this is a really efficient way to do things.</li>
+			</ul>
+
+			<h4>Server Architecture</h4>
+			<p>Networking point of view</p>
+			<ul>
+				<li>The server has a single UDP socket for all UDP traffic.</li>
+				<li>Each client has its own thread and a TCP socket on the server machine.</li>
+				<li>Multithreading has led to a design where network transmitted data is placed on a queue and later processed by an update method run from a relative main thread.</li>
+				<li>The game client can be run from the same process as the server, using the same memory space.</li>
+			</ul>
+
+			<h4>Client Architecture</h4>
+			<p>Networking point of view</p>
+			<ul>
+				<li>The game client has a separate thread for networking.</li>
+				<li>All rendering must be initialized and run from the main thread. Therefore, much of the data received through networking is placed in some kind of
+					mutex protected queue and later on processed from the main thread.</li>
+				<li>The game client has a single UDP and a TCP socket.</li>
+			</ul>
+
+			<h4>Game Architecture</h4>
+			<ul>
+				<li>All structures are basically tree-like data structures. They are held in object containers, the chunks.</li>
+				<li>Structures consist of parts. Parts are either fragments (collidable part, ship hull for example) or components
+					(attached to a master fragment, components have functionality like the name implies, for example the weapon).
+					Some fragments have a functionality to rotate or translate to make movements to the structure. Some parts can detach and re-merge,
+					but this has proved to be quite a nuisance in terms of bugs. Fragments can have a single parent and a number of child fragments and components.
+					A component may never have descendants.</li>
+				<li>Chunks run their own physics simulation and have their own coordinate system. This counters the limits of floating point precision.</li>
+				<li>Chunks have an integer type world position and as a data structure, they are linked to each other upon initialization/uninitialization.
+					Therefore each chunk has a valid pointer to every neighbouring chunk at all times, if the neighbour is loaded. This allows the running simulation to efficiently account
+					neighbouring chunks into physics calculation, in a way so that a structure overlapping to another chunk will still collide with structures in that chunk and vice versa.</li>
+			</ul>
+
+			<h4>AI</h4>
+			<ul>
+				<li>The challenge in this game’s AI is to make it able to control ships using only the thrusters available. This requires some thought: How to determine which thrusters
+					to fire at what strength in order to advance towards certain direction, or perhaps rotate towards a direction? What if this simply is impossible, or the amount of thrusters
+					is so large that the total number of possible thruster state combinations exceeds a reasonable amount (the game still has to run in real time, this is not chess)? What about
+					the ship form? If someone blasts off the right wing of the ship, how will it fly then? What happens to the detached wing? I have tried my best to counter these as well as many
+					other problems while creating an AI framework for this game.</li>
+			</ul>
+
+			<h4>Ship Generation</h4>
+			<ul>
+				<li>Randomly generated build data is used by the NPCs. The generation is deterministic.</li>
+			</ul>
+
+			<h4>Input System</h4>
+			<ul>
+				<li>The input system requires client input state to be synchronized to the server. Joysticks are synchronized along with the mouse and keyboard states.</li>
+				<li>Each server side ship is built in a way that upon initialization, a number of ‘controller’ objects is created for every part that has input assigned to them.
+					The input is written in the build data of the part. The controller will listen to the specified input and act accordingly to what the input is supposed to do
+					(the action type, for example Thruster’s thrust action).</li>
+			</ul>
+
+			<h4>GUI</h4>
+			<ul>
+				<li>Perhaps one of the largest topics to discuss if inspected up to close, most of the GUI is made using the SpehsEngine GUI elements.</li>
+				<li>Each window has its own respective area, sometimes they even act as a sub system for their area of expertise (For example, the blueprints window manages
+					available blueprints in the blueprints directory system). Some are multithreaded environments (windows that have data synced from the server, for example the factions window).</li>
+			</ul>
+
+			<h4>Physics</h4>
+			<p>In co-operation with Juuso</p>
+			<ul>
+				<li>The SAT collision detection is done by Juuso, while the base of the collision response was written by me. The system can run rather smoothly because of the relatively small size of chunks,
+					moreover a simple radius check can prevent SAT checks between two large structures.</li>
+			</ul>
+
+			<h4>Game Design</h4>
+			<p>In co-operation with Juuso</p>
+			<ul>
+				<li>Almost all “game design” is done together. We have some game design documents but mainly we use Paint.</li>
+			</ul>
+		</div>
+
+		<br/>
+		<br/>
+		<br/>
+	</body>
+</html>
