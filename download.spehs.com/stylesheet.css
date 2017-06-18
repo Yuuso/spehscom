@@ -73,7 +73,7 @@ a
     text-align: center;
     float: left;
     margin-left: 25px;
-    margin-top: 85px;
+    margin-top: 150px;
     
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -83,6 +83,20 @@ a
     user-select: none;
 
     cursor: pointer;
+}
+
+.requirements
+{
+    background-color: #222222;
+    color:#CCD9D4;
+    position: absolute;
+    line-height: 50%;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: 55px;
+    margin-top: 25px;
 }
 
 .generalinfo
