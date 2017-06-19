@@ -41,15 +41,18 @@ a
     width: 900px;
     margin: auto;
     font-size: 0px; /*hack fix for spaces between divs*/
+    overflow: hidden;
 }
 .navigation
 {
     background-color: #222222;
     color:#CCD9D4;
     display: inline-block;
+    line-height: 1.5;
+    height: 40px;
     margin-left: 4px;
     margin-right: 4px;
-    font-size: 12px;
+    font-size: 10px;
     color:#185952;
     
     -webkit-touch-callout: none;
