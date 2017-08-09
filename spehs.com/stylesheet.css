@@ -123,6 +123,34 @@ a
     padding: 15px;
 }
 
+.soundtrack-ad
+{
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 30px;
+    padding: 25px;
+    background-color: #aaaaaa;
+    border-radius: 15px;
+    height: 200px;
+}
+.soundtrack-img
+{
+    float: left;
+    display: inline-block;
+    margin-left: 25px;
+    -webkit-transform:rotate(7deg);
+    transform:rotate(7deg);
+}
+.soundtrack-ad-text
+{
+    float: left;
+    display: inline-block;
+    text-align: center;
+    font-size: 24px;
+    margin-left: 40px;
+    margin-top: 40px;
+}
+
 #footer
 {
     border-bottom-right-radius: 15px;
